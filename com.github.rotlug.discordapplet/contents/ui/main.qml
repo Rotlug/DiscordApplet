@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Dialogs
+import QtQuick.Controls
 
 import org.kde.draganddrop 2.0 as DragDrop
 
@@ -18,7 +19,7 @@ PlasmoidItem {
 
     property var users: []
 
-    Layout.minimumWidth: users.length * root.height
+    Layout.minimumWidth: users.length * (root.height + 4)
     Layout.minimumHeight: 1
 
     Layout.maximumWidth: Infinity
@@ -71,6 +72,7 @@ PlasmoidItem {
         anchors.fill: parent
         // anchors.margins: 8
         // spacing: avatarSpacing
+        spacing: 4
 
         Repeater {
             model: users

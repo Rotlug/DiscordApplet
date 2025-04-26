@@ -13,7 +13,6 @@ class State:
     def new_state(new_state: list[Member]):
         State.__state = new_state  # fix: use __state, not state
         State.to_json()
-        State.print_state()
 
     @staticmethod
     def print_state():
