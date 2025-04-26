@@ -1,0 +1,19 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "rotlug77@gmail.com",
+                "Name": "Rotlug"
+            }
+        ],
+        "Category": "System Information",
+        "Description": "Shows who is online on Discord",
+        "Icon": "im-user",
+        "Id": "com.github.rotlug.discordapplet",
+        "Name": "Discord Applet",
+        "Version": "1",
+        "Website": "https://github.com/user/plasmoid-helloworldplugin"
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
