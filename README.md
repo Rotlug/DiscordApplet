@@ -4,12 +4,6 @@ Displays the currently active members inside a specified discord server
 
 ## Dependencies
 
-# DiscordApplet for Plasma
-
-Displays the currently active members inside a specified discord server
-
-## Dependencies
-
 - `qtwebsockets`
 - `python3` & `pip`
 
