@@ -2,6 +2,8 @@
 
 Displays the currently active members inside a specified discord server
 
+![Screenshot](screenshot.png)
+
 ## Dependencies
 
 - `qtwebsockets`
