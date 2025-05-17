@@ -83,19 +83,19 @@ systemctl --user daemon-reload
 4. **Enable the service to start at login**:
 
 ```bash
-systemctl --user enable yourproject.service
+systemctl --user enable discordapplet.service
 ```
 
 5. **Start the service immediately**:
 
 ```bash
-systemctl --user start yourproject.service
+systemctl --user start discordapplet.service
 ```
 
 6. **Check the service status**:
 
 ```bash
-systemctl --user status yourproject.service
+systemctl --user status discordapplet.service
 ```
 
 ### 5. Install the Plasma applet
