@@ -11,9 +11,12 @@ from aiohttp import web
 from discordapplet.server import start_websocket_server
 from discordapplet.state import State
 
-async def main():
+def main():
+    asyncio.run(run())
+
+async def run():
     await start_websocket_server()
     await bot.start_bot()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
