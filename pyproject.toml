@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "discord-applet"
+version = "0.0.1"
+description = "Widget that shows who is in voice"
+authors = [
+  { name="Rotlug", email="rotlug77@gmail.com" }
+]
+dependencies = [
+  "requests",
+  "discord.py",
+  "websockets",
+  "python-dotenv"
+]
+
+[project.scripts]
+discord-applet = "discordapplet.__main__:main"
