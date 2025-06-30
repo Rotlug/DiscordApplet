@@ -3,7 +3,7 @@ import os
 from discord import Member, VoiceState
 import json
 
-from server import notify_clients
+from discordapplet.server import notify_clients
 
 class State:
     __state: list[Member] = [] # private class variable

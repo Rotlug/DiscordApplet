@@ -2,7 +2,7 @@ import discord
 from dotenv import load_dotenv
 from os import getenv
 
-from state import State
+from discordapplet.state import State
 
 load_dotenv()
 guild_id_string = getenv("GUILD_ID")

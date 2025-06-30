@@ -2,14 +2,14 @@
 
 import asyncio
 import json
-import bot
+from discordapplet import bot
 import aiohttp
 import threading
 
 from aiohttp import web
 
-from server import start_websocket_server
-from state import State
+from discordapplet.server import start_websocket_server
+from discordapplet.state import State
 
 async def main():
     await start_websocket_server()

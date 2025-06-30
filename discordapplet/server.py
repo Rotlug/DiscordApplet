@@ -3,7 +3,7 @@ import json
 import websockets
 
 connected_clients = set()
-import state
+from discordapplet import state
 
 async def notify_clients(data):
     if connected_clients:
