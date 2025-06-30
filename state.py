@@ -1,6 +1,5 @@
 import asyncio
 import os
-from colorist import BgColorRGB
 from discord import Member, VoiceState
 import json
 
@@ -18,14 +17,6 @@ class State:
     def print_state():
         os.system('cls' if os.name == 'nt' else 'clear')
         assert State.__state is not None  # accessing the mangled name correctly
-
-        for member in State.__state:
-            print("------------------")
-            color = member.color
-            terminal_output_color = BgColorRGB(color.r, color.g, color.b)
-
-            print(f"{terminal_output_color}{member.display_name}{terminal_output_color.OFF}")
-            print(member.display_avatar)
 
     @staticmethod
     def to_json():
