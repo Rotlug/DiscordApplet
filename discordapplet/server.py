@@ -19,4 +19,4 @@ async def handler(websocket):
         connected_clients.remove(websocket)
 
 def start_websocket_server():
-    return websockets.serve(handler, "localhost", 2025)
+    return websockets.serve(handler, "localhost", 49152)

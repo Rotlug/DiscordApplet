@@ -27,7 +27,7 @@ PlasmoidItem {
 
     WebSocket {
         id: socket
-        url: "ws://localhost:2025"
+        url: "ws://localhost:49152"
         active: true
 
         onTextMessageReceived: function(message) {
