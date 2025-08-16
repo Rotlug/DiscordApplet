@@ -24,6 +24,11 @@ export default class AvatarCircle extends St.Icon {
 }
 
 async function _load_image_from_url(url: string) {
+  const uniqueFilename = url.split("/")[url.split("/").length - 1];
+  const path = GLib.build_filenamev([GLib.get_tmp_dir(), uniqueFilename]);
+
+  if (Gio.File.new_for_path(path).query_exists(null)) return path; // Dont download if file exists
+
   const session = new Soup.Session();
   const message = Soup.Message.new("GET", url);
 
@@ -36,11 +41,6 @@ async function _load_image_from_url(url: string) {
   const bytes = response.get_data();
 
   if (bytes == null) return;
-
-  const uniqueFilename = url.split("/")[url.split("/").length - 1];
-
-  const path = GLib.build_filenamev([GLib.get_tmp_dir(), uniqueFilename]);
   GLib.file_set_contents(path, bytes);
-
   return path;
 }

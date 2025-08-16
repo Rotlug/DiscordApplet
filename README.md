@@ -1,12 +1,12 @@
-# DiscordApplet for Plasma
+# DiscordApplet for Plasma & Gnome
 
 Displays the currently active members inside a specified discord server
 
-![Screenshot](screenshot.png)
+![KDE Plasma Screenshot](screenshot-plasma.png)
+![GNOME Screenshot](screensshot-gnome.png)
 
 ## Dependencies
-
-- `qtwebsockets`
+- `qtwebsockets` (Plasma only)
 - `python3` & `pip`
 
 ---
@@ -101,3 +101,6 @@ systemctl --user status discordapplet.service
 ### 5. Install the Plasma applet
 
 To install the plasma applet to your system, copy the `com.github.rotlug.discordapplet` directory to `~/.local/share/plasma/plasmoids`.
+
+### 6. Install the GNOME Applet
+TODO
