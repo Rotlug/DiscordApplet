@@ -1,0 +1,26 @@
+{
+  "name": "discordapplet",
+  "version": "0.0.0",
+  "description": "Shows who is online on Discord",
+  "type": "module",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/example/discord-applet.git"
+  },
+  "author": "Álan Crístoffer e Sousa <acristoffers@startmail.com>",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/example/discordapplet/issues"
+  },
+  "homepage": "https://github.com/example/discordapplet#readme",
+  "sideEffects": false,
+  "dependencies": {
+    "@girs/gjs": "^4.0.0-beta.34",
+    "@girs/gnome-shell": "^48.0.2",
+    "@girs/soup-3.0": "^3.6.5-4.0.0-beta.34",
+    "eslint": "^9.33.0",
+    "eslint-plugin-jsdoc": "^54.1.0",
+    "typescript": "^5.9.2"
+  }
+}

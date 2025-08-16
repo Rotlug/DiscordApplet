@@ -1,0 +1,8 @@
+{
+  "name": "DiscordApplet",
+  "description": "Shows who is online on Discord",
+  "uuid": "discordapplet@rotlug.github.com",
+  "shell-version": [
+    "48"
+  ]
+}
