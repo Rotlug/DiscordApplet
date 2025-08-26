@@ -3,7 +3,7 @@
 Displays the currently active members inside a specified discord server
 
 ![KDE Plasma Screenshot](screenshot-plasma.png)
-![GNOME Screenshot](screensshot-gnome.png)
+![GNOME Screenshot](screenshot-gnome.png)
 
 ## Dependencies
 - `qtwebsockets` (Plasma only)
