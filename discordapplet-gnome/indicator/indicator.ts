@@ -2,14 +2,8 @@ import GObject from "gi://GObject";
 import St from "gi://St";
 
 import * as PanelMenu from "resource:///org/gnome/shell/ui/panelMenu.js";
-import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
-
-import * as Main from "resource:///org/gnome/shell/ui/main.js";
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
-import Clutter from "gi://Clutter?version=16";
-
 import DiscordSocket, { VCData } from "../socket.js";
-
 import AvatarCircle from "./avatar_circle.js";
 
 export default class Indicator extends PanelMenu.Button {

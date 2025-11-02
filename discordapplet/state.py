@@ -1,12 +1,12 @@
 import asyncio
 import os
-from discord import Member, VoiceState
-import json
+from discord import Member
 
 from discordapplet.server import notify_clients
 
+
 class State:
-    __state: list[Member] = [] # private class variable
+    __state: list[Member] = []  # private class variable
 
     @staticmethod
     def new_state(new_state: list[Member]):
@@ -15,7 +15,7 @@ class State:
 
     @staticmethod
     def print_state():
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system("cls" if os.name == "nt" else "clear")
         assert State.__state is not None  # accessing the mangled name correctly
 
     @staticmethod
@@ -23,10 +23,9 @@ class State:
         assert State.__state != None
         data: list[dict[str, str]] = []
         for member in State.__state:
-            data.append({
-                "name": member.display_name,
-                "avatar": member.display_avatar.url
-            })
+            data.append(
+                {"name": member.display_name, "avatar": member.display_avatar.url}
+            )
 
         asyncio.create_task(notify_clients(data))
         return data
