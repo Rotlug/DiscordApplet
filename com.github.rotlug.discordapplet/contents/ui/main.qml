@@ -15,12 +15,8 @@ PlasmoidItem {
     property var users: []
 
     // Adjust sizing based on orientation
-    Layout.minimumWidth: plasmoid.formFactor === PlasmaCore.Types.Vertical
-        ? 1
-        : users.length * (root.height + 4)
-    Layout.minimumHeight: plasmoid.formFactor === PlasmaCore.Types.Vertical
-        ? users.length * (root.width + 4)
-        : 1
+    Layout.minimumWidth: plasmoid.formFactor === PlasmaCore.Types.Vertical ? 1 : users.length * (root.height + 4)
+    Layout.minimumHeight: plasmoid.formFactor === PlasmaCore.Types.Vertical ? users.length * (root.width + 4) : 1
 
     Layout.maximumWidth: Infinity
     Layout.maximumHeight: Infinity
@@ -30,22 +26,23 @@ PlasmoidItem {
         url: "ws://localhost:49152"
         active: true
 
-        onTextMessageReceived: function(message) {
+        onTextMessageReceived: function (message) {
             try {
-                users = JSON.parse(message)
+                users = JSON.parse(message);
             } catch (e) {
-                console.error("Invalid JSON from WebSocket:", message)
+                console.error("Invalid JSON from WebSocket:", message);
             }
         }
 
         onStatusChanged: {
-            console.log("WebSocket status changed:", socket.status)
+            console.log("WebSocket status changed:", socket.status);
 
             if (socket.status === WebSocket.Error || socket.status === WebSocket.Closed) {
-                if (!reconnectTimer.running) reconnectTimer.start()
+                if (!reconnectTimer.running)
+                    reconnectTimer.start();
             } else if (socket.status === WebSocket.Open) {
-                reconnectTimer.stop()
-                socket.sendTextMessage("Hello!")
+                reconnectTimer.stop();
+                socket.sendTextMessage("Hello!");
             }
         }
     }
@@ -58,9 +55,9 @@ PlasmoidItem {
 
         onTriggered: {
             if (socket.status !== WebSocket.Open) {
-                console.log("Attempting to reconnect WebSocket...")
-                socket.active = false
-                socket.active = true
+                console.log("Attempting to reconnect WebSocket...");
+                socket.active = false;
+                socket.active = true;
             }
         }
     }
@@ -90,14 +87,12 @@ PlasmoidItem {
         }
     }
 
-    
     Connections {
         target: plasmoid
         function onFormFactorChanged() {
-            console.log("Form factor changed:", plasmoid.formFactor)
-            avatarLayout.rows = plasmoid.formFactor === PlasmaCore.Types.Vertical ? users.length : 1
-            avatarLayout.columns = plasmoid.formFactor === PlasmaCore.Types.Vertical ? 1 : users.length
+            console.log("Form factor changed:", plasmoid.formFactor);
+            avatarLayout.rows = plasmoid.formFactor === PlasmaCore.Types.Vertical ? users.length : 1;
+            avatarLayout.columns = plasmoid.formFactor === PlasmaCore.Types.Vertical ? 1 : users.length;
         }
     }
 }
-
