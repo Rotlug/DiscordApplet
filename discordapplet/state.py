@@ -1,3 +1,4 @@
+import subprocess
 import asyncio
 import os
 from discord import Member
@@ -6,21 +7,21 @@ from discordapplet.server import notify_clients
 
 
 class State:
-    __state: list[Member] = []  # private class variable
+    __state: list[Member] = []
 
     @staticmethod
     def new_state(new_state: list[Member]):
-        State.__state = new_state  # fix: use __state, not state
+        State.__state = new_state
         State.to_json()
 
     @staticmethod
     def print_state():
-        os.system("cls" if os.name == "nt" else "clear")
+        subprocess.call("cls" if os.name == "nt" else "clear")
         assert State.__state is not None  # accessing the mangled name correctly
 
     @staticmethod
     def to_json():
-        assert State.__state != None
+        assert State.__state is not None
         data: list[dict[str, str]] = []
         for member in State.__state:
             data.append(

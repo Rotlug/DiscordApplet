@@ -1,5 +1,6 @@
 .env
 .venv
 __pycache__/
+/.direnv
 discordapplet-gnome/dist
 discordapplet-gnome/node_modules

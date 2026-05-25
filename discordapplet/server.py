@@ -1,9 +1,9 @@
 import asyncio
 import json
 import websockets
+from discordapplet import state
 
 connected_clients = set()
-from discordapplet import state
 
 
 async def notify_clients(data):
@@ -15,7 +15,7 @@ async def notify_clients(data):
 async def handler(websocket):
     connected_clients.add(websocket)
     try:
-        async for message in websocket:
+        async for _message in websocket:
             state.State.to_json()
     finally:
         connected_clients.remove(websocket)

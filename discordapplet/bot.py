@@ -6,7 +6,7 @@ from discordapplet.state import State
 
 load_dotenv()
 guild_id_string = getenv("GUILD_ID")
-assert guild_id_string != None
+assert guild_id_string is not None
 GUILD_ID = int(guild_id_string)
 
 # Get intents
@@ -20,13 +20,13 @@ client = discord.Client(intents=intents)
 async def on_ready():
     print(f"We have logged in as {client.user}")
     guild = client.get_guild(GUILD_ID)
-    if guild != None:
+    if guild is not None:
         save_voice_members(guild)
 
 
 @client.event
 async def on_voice_state_update(
-    member: discord.Member, before: discord.VoiceState, after: discord.VoiceState
+    member: discord.Member, _before: discord.VoiceState, _after: discord.VoiceState
 ):
     save_voice_members(member.guild)
 
@@ -37,7 +37,7 @@ def save_voice_members(guild: discord.Guild):
 
     members: list[discord.Member] = []
     for member in guild.members:
-        if member.voice == None:
+        if member.voice is None:
             continue
         members.append(member)
 
@@ -46,5 +46,5 @@ def save_voice_members(guild: discord.Guild):
 
 async def start_bot():
     ACCESS_TOKEN = getenv("DISCORD_ACCESS_TOKEN")
-    assert ACCESS_TOKEN != None
+    assert ACCESS_TOKEN is not None
     await client.start(ACCESS_TOKEN)
