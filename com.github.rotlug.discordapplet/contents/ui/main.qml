@@ -14,12 +14,13 @@ PlasmoidItem {
     preferredRepresentation: fullRepresentation
     property var users: []
 
-    // Adjust sizing based on orientation
-    Layout.minimumWidth: plasmoid.formFactor === PlasmaCore.Types.Vertical ? 1 : users.length * (root.height + 4)
-    Layout.minimumHeight: plasmoid.formFactor === PlasmaCore.Types.Vertical ? users.length * (root.width + 4) : 1
+    readonly property real totalLayoutSize: (users.length * (plasmoid.formFactor === PlasmaCore.Types.Vertical ? root.width : root.height)) + ((users.length - 1) * 4)
 
-    Layout.maximumWidth: Infinity
-    Layout.maximumHeight: Infinity
+    Layout.minimumWidth: plasmoid.formFactor === PlasmaCore.Types.Vertical ? 1 : (users.length > 0 ? totalLayoutSize : Kirigami.Units.gridUnit)
+    Layout.minimumHeight: plasmoid.formFactor === PlasmaCore.Types.Vertical ? (users.length > 0 ? totalLayoutSize : Kirigami.Units.gridUnit) : 1
+
+    Layout.preferredWidth: Layout.minimumWidth
+    Layout.preferredHeight: Layout.minimumHeight
 
     WebSocket {
         id: socket
@@ -28,18 +29,15 @@ PlasmoidItem {
 
         onTextMessageReceived: function (message) {
             try {
-                users = JSON.parse(message);
+                root.users = JSON.parse(message);
             } catch (e) {
                 console.error("Invalid JSON from WebSocket:", message);
             }
         }
 
         onStatusChanged: {
-            console.log("WebSocket status changed:", socket.status);
-
             if (socket.status === WebSocket.Error || socket.status === WebSocket.Closed) {
-                if (!reconnectTimer.running)
-                    reconnectTimer.start();
+                if (!reconnectTimer.running) reconnectTimer.start();
             } else if (socket.status === WebSocket.Open) {
                 reconnectTimer.stop();
                 socket.sendTextMessage("Hello!");
@@ -52,47 +50,66 @@ PlasmoidItem {
         interval: 3000
         repeat: true
         running: false
-
         onTriggered: {
             if (socket.status !== WebSocket.Open) {
-                console.log("Attempting to reconnect WebSocket...");
                 socket.active = false;
                 socket.active = true;
             }
         }
     }
 
-    GridLayout {
-        id: avatarLayout
+    fullRepresentation: Item {
         anchors.fill: parent
-        rowSpacing: 4
-        columnSpacing: 4
 
-        // Automatically switch layout structure
-        rows: plasmoid.formFactor === PlasmaCore.Types.Vertical ? users.length : 1
-        columns: plasmoid.formFactor === PlasmaCore.Types.Vertical ? 1 : users.length
+        Loader {
+            anchors.fill: parent
+            sourceComponent: plasmoid.formFactor === PlasmaCore.Types.Vertical ? verticalLayout : horizontalLayout
+        }
 
-        Repeater {
-            model: users
-
-            Image {
-                Layout.preferredWidth: plasmoid.formFactor === PlasmaCore.Types.Vertical ? root.width : root.height
-                Layout.preferredHeight: plasmoid.formFactor === PlasmaCore.Types.Vertical ? root.width : root.height
-                source: modelData.avatar
-                fillMode: Image.PreserveAspectFit
-                cache: false
-                smooth: true
-                clip: true
+        Component {
+            id: horizontalLayout
+            RowLayout {
+                spacing: 4
+                
+                Repeater {
+                    model: root.users
+                    
+                    Image {
+                        Layout.preferredWidth: parent.height
+                        Layout.preferredHeight: parent.height
+                        Layout.maximumWidth: parent.height
+                        Layout.maximumHeight: parent.height
+                        
+                        source: modelData.avatar
+                        fillMode: Image.PreserveAspectFit
+                        cache: false
+                        smooth: true
+                    }
+                }
             }
         }
-    }
 
-    Connections {
-        target: plasmoid
-        function onFormFactorChanged() {
-            console.log("Form factor changed:", plasmoid.formFactor);
-            avatarLayout.rows = plasmoid.formFactor === PlasmaCore.Types.Vertical ? users.length : 1;
-            avatarLayout.columns = plasmoid.formFactor === PlasmaCore.Types.Vertical ? 1 : users.length;
+        Component {
+            id: verticalLayout
+            ColumnLayout {
+                spacing: 4
+                
+                Repeater {
+                    model: root.users
+                    
+                    Image {
+                        Layout.preferredWidth: parent.width
+                        Layout.preferredHeight: parent.width
+                        Layout.maximumWidth: parent.width
+                        Layout.maximumHeight: parent.width
+                        
+                        source: modelData.avatar
+                        fillMode: Image.PreserveAspectFit
+                        cache: false
+                        smooth: true
+                    }
+                }
+            }
         }
     }
 }
