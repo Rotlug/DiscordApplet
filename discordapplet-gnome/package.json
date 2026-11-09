@@ -16,11 +16,12 @@
   "homepage": "https://github.com/example/discordapplet#readme",
   "sideEffects": false,
   "dependencies": {
-    "@girs/gjs": "^4.0.1",
-    "@girs/gnome-shell": "^50.0.0",
-    "@girs/soup-3.0": "^3.6.6-4.0.1",
-    "eslint": "^10.4.0",
-    "eslint-plugin-jsdoc": "^63.0.0",
-    "typescript": "^6.0.3"
+    "@girs/gjs": "^5.6.0",
+    "@girs/gnome-shell": "^51.0.1",
+    "@girs/soup-3.0": "^5.6.0",
+    "eslint": "^10.14.0",
+    "eslint-plugin-jsdoc": "^65.4.5",
+    "npm-check-updates": "^23.1.1",
+    "typescript": "^7.0.2"
   }
 }
